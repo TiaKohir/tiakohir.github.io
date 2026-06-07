@@ -1461,40 +1461,27 @@
         <div style="display: flex; flex-direction: column; gap: 20px;">
           <div style="padding: 20px; background: var(--paper); border-radius: 6px; border-left: 4px solid var(--terracotta);">
             <h4 style="font-family: 'Fraunces', serif; font-size: 18px; margin-bottom: 10px; color: var(--ink);">Run Right Models on Right Clinical Data</h4>
-            <ul style="margin-left: 20px; color: var(--ink-soft); line-height: 1.7;">
-              <li>Model selection should flow from clinical problem definition, not available data</li>
-              <li>Data quality and completeness drives model performance more than algorithm sophistication</li>
-              <li>Clinical validation requires domain experts, not just statistical benchmarks</li>
-              <li>Avoid over-engineering on edge cases that rarely appear in production</li>
-            </ul>
+            <p style="color: var(--ink-soft); line-height: 1.7; margin: 0;">
+              <strong>Problem definition</strong> drives model selection, not available data. <strong>Data quality</strong> matters more than algorithm sophistication. <strong>Domain experts</strong> validate, not just metrics.
+            </p>
           </div>
           <div style="padding: 20px; background: var(--paper); border-radius: 6px; border-left: 4px solid var(--gold);">
             <h4 style="font-family: 'Fraunces', serif; font-size: 18px; margin-bottom: 10px; color: var(--ink);">Compute vs. Token Relations</h4>
-            <ul style="margin-left: 20px; color: var(--ink-soft); line-height: 1.7;">
-              <li>Token spend accelerates non-linearly as context windows expand — monitor early and often</li>
-              <li>Inference cost per unit of clinical value is the metric that matters for sustainability</li>
-              <li>Batch processing and off-peak scheduling can reduce operational costs by 30-50%</li>
-              <li>Track actual token usage against budget projections monthly, not quarterly</li>
-            </ul>
+            <p style="color: var(--ink-soft); line-height: 1.7; margin: 0;">
+              <strong>Token spend accelerates non-linearly</strong> with context expansion. Optimize for <strong>cost per clinical value</strong>, not raw throughput. <strong>Batch processing</strong> saves 30-50%. <strong>Monthly tracking</strong> prevents surprises.
+            </p>
           </div>
           <div style="padding: 20px; background: var(--paper); border-radius: 6px; border-left: 4px solid var(--ink);">
             <h4 style="font-family: 'Fraunces', serif; font-size: 18px; margin-bottom: 10px; color: var(--ink);">Strategic &amp; Financial Framework Approach</h4>
-            <ul style="margin-left: 20px; color: var(--ink-soft); line-height: 1.7;">
-              <li>Separate platform costs from automation costs — each follows different scaling economics</li>
-              <li>Build ROI models with sensitivity analysis on clinical adoption rates, not just happy-path scenarios</li>
-              <li>Track pilot-to-production friction — most AI projects fail on change management, not technology</li>
-              <li>Use quarterly reviews to scale wins, maintain stable deployments, or retire underperforming tools</li>
-            </ul>
+            <p style="color: var(--ink-soft); line-height: 1.7; margin: 0;">
+              <strong>Separate platform from automation costs</strong> — they scale differently. Build <strong>sensitivity-tested ROI models</strong>, not happy-path projections. <strong>Change management</strong> kills more projects than technology. Use <strong>quarterly reviews</strong> to scale, maintain, or retire.
+            </p>
           </div>
           <div style="padding: 20px; background: var(--paper); border-radius: 6px; border-left: 4px solid var(--terracotta);">
             <h4 style="font-family: 'Fraunces', serif; font-size: 18px; margin-bottom: 10px; color: var(--ink);">Data Analytics &amp; Governance: Foundation for Context Accuracy</h4>
-            <ul style="margin-left: 20px; color: var(--ink-soft); line-height: 1.7;">
-              <li>Governance must precede analytics — define data ownership, lineage, and quality standards before building models</li>
-              <li>Missing context is more dangerous than missing data — ensure clinical narratives, patient history, and temporal relationships are captured</li>
-              <li>Audit data dictionaries ruthlessly — validate that field definitions match clinical reality and that no critical datapoints are hidden in text fields</li>
-              <li>Build data analytics to surface context gaps early — use descriptive analytics to identify what's absent, not just what's present</li>
-              <li>Context accuracy requires traceability — map which AI decisions depend on which data elements and establish alerts when data quality degrades</li>
-            </ul>
+            <p style="color: var(--ink-soft); line-height: 1.7; margin: 0;">
+              <strong>Governance precedes analytics</strong> — not the reverse. <strong>Missing context is riskier than missing data</strong>. <strong>Audit data dictionaries ruthlessly</strong> for hidden gaps. <strong>Surface absence</strong>, not just presence. <strong>Traceability</strong> enables detection of model-breaking data degradation.
+            </p>
           </div>
         </div>
       </div>
