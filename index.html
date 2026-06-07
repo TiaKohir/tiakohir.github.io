@@ -924,6 +924,74 @@
     background: var(--paper);
   }
 
+  /* ABOUT PAGE INTERACTIVE BUBBLES */
+  .about-section {
+    position: relative;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .about-body {
+    position: relative;
+    z-index: 2;
+  }
+  .bubbles-container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .about-section:hover .bubbles-container {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .bubble {
+    position: absolute;
+    background: var(--paper);
+    border: 2px solid;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    padding: 8px;
+    cursor: pointer;
+    animation: float 6s ease-in-out infinite;
+    z-index: 10;
+  }
+  .bubble:hover {
+    transform: scale(1.15);
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) translateX(0px); }
+    50% { transform: translateY(-20px) translateX(8px); }
+  }
+  .bubble.terracotta {
+    border-color: var(--terracotta);
+    color: var(--terracotta);
+    width: 90px;
+    height: 90px;
+    animation-delay: 0s;
+  }
+  .bubble.gold {
+    border-color: var(--gold);
+    color: var(--gold);
+    width: 80px;
+    height: 80px;
+    animation-delay: 0.5s;
+  }
+  .bubble.ink {
+    border-color: var(--ink);
+    color: var(--ink);
+    width: 85px;
+    height: 85px;
+    animation-delay: 1s;
+  }
+
   /* MOBILE */
   @media (max-width: 768px) {
     .container { padding: 0 20px; }
@@ -1003,7 +1071,7 @@
 
 <!-- ============ ABOUT TAB ============ -->
 <section id="about" class="tab-panel">
-  <div class="container">
+  <div class="container about-section">
 
     <div class="about-hero">
       <div>
@@ -1021,21 +1089,25 @@
 
     <div class="about-body">
       <p>
-        Every framework I build starts from the <strong>clinician's seat</strong>. They're who we serve. Healthcare AI only creates value when it <strong>reduces friction</strong> &mdash; not adds to it.
+        Every framework I build starts from the <strong>clinician's seat</strong>. Healthcare AI only creates value when it <strong>reduces friction</strong> &mdash; not adds to it. That means <strong>automating administrative work</strong> and giving time back to care.
       </p>
       <p>
-        That means <strong>automating the administrative burden</strong> &mdash; the repetitive workflows that drain hours from care. And using AI to augment clinical work through <strong>accurate summaries, decision support, and second opinions</strong>. The goal isn't replacing clinical judgment. It's <strong>giving time back to care</strong>.
+        The foundation is <strong>clinical data</strong>. I've spent years building data warehouses, auditing ETL pipelines, and ensuring <strong>context accuracy</strong>. Without that rigor, AI fails. <strong>Change management and governance</strong> matter more than algorithm sophistication.
       </p>
       <p>
-        Just as important: <strong>unnecessary duplication of AI solutions should be challenged before it reaches production</strong>. These tools have to be designed inside the existing <strong>EHR and workflow ecosystem</strong> &mdash; not layered on as disconnected point solutions.
-      </p>
-      <p>
-        The AI landscape updates faster than clinicians can absorb it. Nurses and physicians are already running on the edge of <strong>burnout</strong>. A wrong AI product, shipped at the wrong moment, doesn't just fail to help &mdash; it adds to the cognitive load and pushes good people out of the profession. The <strong>human-in-the-loop</strong> isn't a constraint. It's the point.
-      </p>
-      <p>
-        Nine years across the healthcare tech ecosystem &mdash; data engineering, analytics, modeling, and the end-to-end lifecycle from inception through post-production monitoring. Epic implementations at CommonSpirit, BI and data engineering at NYU Langone and Sutter Health, and most recently AI value strategy at <span class="brand-name">Stanford Health Care</span>. Bachelor's in Computer Science, MBA in Hospital and Healthcare Administration, MS in Health Data Analytics.
+        Nine years across healthcare tech: Epic implementations, data engineering at NYU Langone and Sutter Health, AI value strategy at <span class="brand-name">Stanford Health Care</span>. Bachelor's in Computer Science, MBA in Hospital and Healthcare Administration, MS in Health Data Analytics.
       </p>
       <div class="signature">&mdash; Tia</div>
+    </div>
+
+    <!-- HOVER BUBBLES -->
+    <div class="bubbles-container">
+      <div class="bubble terracotta" style="top: 10%; left: 5%;">Clinician-Centered</div>
+      <div class="bubble gold" style="top: 25%; right: 8%;">Data Foundation</div>
+      <div class="bubble ink" style="top: 50%; left: 12%;">Context Accuracy</div>
+      <div class="bubble terracotta" style="top: 65%; right: 5%;">Change Management</div>
+      <div class="bubble gold" style="bottom: 15%; left: 8%;">Governance</div>
+      <div class="bubble ink" style="bottom: 20%; right: 10%;">9+ Years Epic×AI</div>
     </div>
 
   </div>
