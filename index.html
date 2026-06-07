@@ -934,10 +934,12 @@
   }
   .bubbles-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
     gap: 16px;
-    margin-top: 30px;
-    padding: 0 20px;
+    margin-top: 50px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .bubble {
     position: relative;
@@ -1075,17 +1077,17 @@
       <div class="about-image-wrap">
         <div class="deco-circle"></div>
         <img src="tia-hero.jpeg" alt="Teija Hebshibah Kohir" class="about-image" />
-        
-        <!-- CLICKABLE BUBBLES GRID BELOW IMAGE -->
-        <div class="bubbles-grid">
-          <a href="#" onclick="document.getElementById('tab-work').click(); return false;" class="bubble terracotta" title="View case studies focused on clinician-centered design">Clinician-<br>Centered</a>
-          <a href="#" onclick="document.getElementById('tab-work').click(); return false;" class="bubble gold" title="View NYU data foundation case study">Data<br>Foundation</a>
-          <a href="#" onclick="document.getElementById('tab-blog').click(); return false;" class="bubble ink" title="View context accuracy playbook">Context<br>Accuracy</a>
-          <a href="#" onclick="document.getElementById('tab-blog').click(); return false;" class="bubble terracotta" title="View strategic frameworks">Change<br>Management</a>
-          <a href="#" onclick="document.getElementById('tab-blog').click(); return false;" class="bubble gold" title="View data governance playbook">Governance</a>
-          <a href="#" onclick="document.getElementById('tab-experience').click(); return false;" class="bubble ink" title="View full experience">9+ Years<br>Epic×AI</a>
-        </div>
       </div>
+    </div>
+
+    <!-- CLICKABLE BUBBLES GRID BELOW IMAGE -->
+    <div class="bubbles-grid">
+      <a href="#" onclick="document.getElementById('tab-work').click(); return false;" class="bubble terracotta" title="View case studies focused on clinician-centered design">Clinician-<br>Centered</a>
+      <a href="#" onclick="document.getElementById('tab-work').click(); return false;" class="bubble gold" title="View NYU data foundation case study">Data<br>Foundation</a>
+      <a href="#" onclick="document.getElementById('tab-blog').click(); return false;" class="bubble ink" title="View context accuracy playbook">Context<br>Accuracy</a>
+      <a href="#" onclick="document.getElementById('tab-blog').click(); return false;" class="bubble terracotta" title="View strategic frameworks">Change<br>Management</a>
+      <a href="#" onclick="document.getElementById('tab-blog').click(); return false;" class="bubble gold" title="View data governance playbook">Governance</a>
+      <a href="#" onclick="document.getElementById('tab-experience').click(); return false;" class="bubble ink" title="View full experience">9+ Years<br>Epic×AI</a>
     </div>
 
     <div class="about-body">
