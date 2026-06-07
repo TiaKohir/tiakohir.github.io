@@ -1335,7 +1335,7 @@
     </p>
 
     <!-- ===== AI LAB DROPDOWN ===== -->
-    <details open class="blog-section">
+    <details class="blog-section">
       <summary class="blog-section-header">
         <div class="blog-section-title">AI Lab</div>
         <div class="blog-section-meta">3 ongoing projects</div>
@@ -1491,6 +1491,49 @@
           <a href="https://medium.com/@TiaKohir" target="_blank" rel="noopener">
             Follow me on Medium &rarr;
           </a>
+        </div>
+      </div>
+    </details>
+
+    <!-- ===== PLAYBOOKS DROPDOWN ===== -->
+    <details class="blog-section">
+      <summary class="blog-section-header">
+        <div class="blog-section-title">Playbooks from My Learnings</div>
+        <div class="blog-section-meta">Strategic frameworks</div>
+        <div class="dropdown-icon">&#9662;</div>
+      </summary>
+      <div class="blog-section-body">
+        <p class="blog-section-intro">
+          Key learnings and strategic frameworks from nine years deploying healthcare AI across multiple systems and organizations.
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <div style="padding: 20px; background: var(--paper); border-radius: 6px; border-left: 4px solid var(--terracotta);">
+            <h4 style="font-family: 'Fraunces', serif; font-size: 18px; margin-bottom: 10px; color: var(--ink);">Run Right Models on Right Clinical Data</h4>
+            <ul style="margin-left: 20px; color: var(--ink-soft); line-height: 1.7;">
+              <li>Model selection should flow from clinical problem definition, not available data</li>
+              <li>Data quality and completeness drives model performance more than algorithm sophistication</li>
+              <li>Clinical validation requires domain experts, not just statistical benchmarks</li>
+              <li>Avoid over-engineering on edge cases that rarely appear in production</li>
+            </ul>
+          </div>
+          <div style="padding: 20px; background: var(--paper); border-radius: 6px; border-left: 4px solid var(--gold);">
+            <h4 style="font-family: 'Fraunces', serif; font-size: 18px; margin-bottom: 10px; color: var(--ink);">Compute vs. Token Relations</h4>
+            <ul style="margin-left: 20px; color: var(--ink-soft); line-height: 1.7;">
+              <li>Token spend accelerates non-linearly as context windows expand — monitor early and often</li>
+              <li>Inference cost per unit of clinical value is the metric that matters for sustainability</li>
+              <li>Batch processing and off-peak scheduling can reduce operational costs by 30-50%</li>
+              <li>Track actual token usage against budget projections monthly, not quarterly</li>
+            </ul>
+          </div>
+          <div style="padding: 20px; background: var(--paper); border-radius: 6px; border-left: 4px solid var(--ink);">
+            <h4 style="font-family: 'Fraunces', serif; font-size: 18px; margin-bottom: 10px; color: var(--ink);">Strategic &amp; Financial Framework Approach</h4>
+            <ul style="margin-left: 20px; color: var(--ink-soft); line-height: 1.7;">
+              <li>Separate platform costs from automation costs — each follows different scaling economics</li>
+              <li>Build ROI models with sensitivity analysis on clinical adoption rates, not just happy-path scenarios</li>
+              <li>Track pilot-to-production friction — most AI projects fail on change management, not technology</li>
+              <li>Use quarterly reviews to scale wins, maintain stable deployments, or retire underperforming tools</li>
+            </ul>
+          </div>
         </div>
       </div>
     </details>
