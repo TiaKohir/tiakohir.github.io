@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Teija Hebshibah Kohir — Healthcare AI Product & Value</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F6F0E4;
+    --cream-deep: #EEE5D3;
+    --ink: #1A1815;
+    --ink-soft: #4A4540;
+    --terracotta: #B5523A;
+    --terracotta-deep: #8E3D2A;
+    --gold: #C99B5C;
+    --paper: #FBF7EE;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Manrope', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(181, 82, 58, 0.03) 0, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(201, 155, 92, 0.04) 0, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .grain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.35;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 2; }
+
+  /* NAV with tabs */
+  nav {
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    background: rgba(246, 240, 228, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 100;
+    border-bottom: 1px solid rgba(26, 24, 21, 0.06);
+  }
+  .nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+  }
+  .logo-block {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+  .logo {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 20px;
+    font-variation-settings: "SOFT" 60, "opsz" 24;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+  .logo .dot { color: var(--terracotta); }
+  .logo-sub {
+    font-size: 10px;
+    color: var(--ink-soft);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-top: 5px;
+    font-weight: 500;
+  }
+  .tab-nav {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .tab-btn {
+    padding: 10px 18px;
+    background: transparent;
+    border: 1px solid rgba(26, 24, 21, 0.14);
+    border-radius: 100px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.25s;
+    user-select: none;
+  }
+  .tab-btn:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+
+  /* Hidden radio inputs that drive tab state — pure CSS, no JS needed */
+  .tab-radio {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    width: 0;
+    height: 0;
+  }
+
+  /* TAB PANELS — hidden by default, shown when their radio is :checked */
+  .tab-panel {
+    display: none;
+    animation: fadeIn 0.4s ease-out;
+    padding: 44px 0 72px;
+  }
+  /* Show panel matching the checked radio */
+  #tab-about:checked    ~ main #about,
+  #tab-experience:checked ~ main #experience,
+  #tab-work:checked     ~ main #work,
+  #tab-blog:checked     ~ main #blog,
+  #tab-contact:checked  ~ main #contact {
+    display: block;
+  }
+  /* Active label styling — when corresponding radio is checked */
+  #tab-about:checked    ~ nav label[for="tab-about"],
+  #tab-experience:checked ~ nav label[for="tab-experience"],
+  #tab-work:checked     ~ nav label[for="tab-work"],
+  #tab-blog:checked     ~ nav label[for="tab-blog"],
+  #tab-contact:checked  ~ nav label[for="tab-contact"] {
+    background: var(--ink);
+    color: var(--cream);
+    border-color: var(--ink);
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* HEADINGS */
+  .eyebrow {
+    font-family: 'Manrope', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--terracotta-deep);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 32px;
+    height: 1px;
+    background: var(--terracotta);
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(40px, 5.5vw, 68px);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    margin-bottom: 24px;
+    font-variation-settings: "SOFT" 50, "opsz" 144;
+  }
+  h1 .accent {
+    font-style: italic;
+    color: var(--terracotta);
+    font-weight: 300;
+    position: relative;
+    display: inline-block;
+  }
+  h1 .accent::after {
+    content: "";
+    position: absolute;
+    bottom: 0.12em;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: var(--gold);
+    opacity: 0.35;
+    z-index: -1;
+    transform: skewX(-8deg);
+  }
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    font-variation-settings: "SOFT" 50, "opsz" 96;
+  }
+  h2 .italic {
+    font-style: italic;
+    color: var(--terracotta);
+    font-weight: 300;
+  }
+  .section-intro {
+    font-size: 18px;
+    color: var(--ink-soft);
+    max-width: 620px;
+    margin-bottom: 50px;
+  }
+
+  /* ABOUT TAB */
+  .about-hero {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 60px;
+  }
+  .about-image-wrap {
+    position: relative;
+  }
+  .about-image {
+    width: 100%;
+    aspect-ratio: 4/5;
+    border-radius: 6px;
+    object-fit: cover;
+    object-position: center top;
+    box-shadow: 0 30px 60px -20px rgba(26, 24, 21, 0.25);
+    position: relative;
+    z-index: 2;
+  }
+  .deco-circle {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 80px;
+    height: 80px;
+    border: 1.5px solid var(--terracotta);
+    border-radius: 50%;
+    opacity: 0.4;
+    z-index: 1;
+  }
+  .hero-sub {
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 540px;
+  }
+
+  .about-body {
+    max-width: 720px;
+    margin-top: 20px;
+  }
+  .about-body p {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin-bottom: 20px;
+  }
+  .about-body p:first-child {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.4;
+    font-variation-settings: "SOFT" 50;
+  }
+  .about-body strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .about-body p:first-child strong {
+    font-weight: 600;
+    font-style: italic;
+  }
+  .brand-name {
+    font-weight: 700;
+    color: var(--terracotta-deep);
+    letter-spacing: -0.005em;
+  }
+  .signature {
+    margin-top: 32px;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 28px;
+    color: var(--terracotta);
+    font-variation-settings: "SOFT" 100;
+  }
+
+  /* STATS */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    padding: 28px 0;
+    border-top: 1px solid rgba(26, 24, 21, 0.1);
+    border-bottom: 1px solid rgba(26, 24, 21, 0.1);
+    margin-bottom: 40px;
+  }
+  .stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    font-variation-settings: "SOFT" 40, "opsz" 96;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .stat-num .unit {
+    color: var(--terracotta);
+    font-style: italic;
+  }
+  .stat-label {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.4;
+    font-weight: 500;
+  }
+
+  /* EXPERIENCE */
+  .exp-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 32px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(26, 24, 21, 0.08);
+    align-items: baseline;
+    transition: padding 0.3s;
+  }
+  .exp-item:hover { padding-left: 12px; }
+  .exp-date {
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  .exp-role {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-bottom: 4px;
+    font-variation-settings: "SOFT" 50, "opsz" 36;
+  }
+  .exp-org {
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .exp-detail {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: 10px;
+    line-height: 1.55;
+    max-width: 620px;
+    opacity: 0.92;
+  }
+  .exp-detail .award {
+    color: var(--terracotta);
+    font-weight: 600;
+  }
+
+  /* TOOLS */
+  .tools-header {
+    margin-top: 44px;
+    margin-bottom: 18px;
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 400;
+    font-variation-settings: "SOFT" 50, "opsz" 36;
+  }
+  .tools-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .tool-pill {
+    padding: 9px 16px;
+    background: var(--paper);
+    border: 1px solid rgba(26, 24, 21, 0.1);
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    transition: all 0.2s;
+  }
+  .tool-pill:hover {
+    border-color: var(--terracotta);
+    color: var(--terracotta);
+  }
+  .tool-pill.primary {
+    background: var(--ink);
+    color: var(--cream);
+    border-color: var(--ink);
+  }
+  .tool-category {
+    margin-bottom: 18px;
+  }
+  .tool-category:last-of-type { margin-bottom: 0; }
+  .tool-category-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  /* AI LAB cards */
+  .lab-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .lab-card {
+    background: var(--paper);
+    border: 1px solid rgba(26, 24, 21, 0.06);
+    border-radius: 6px;
+    padding: 32px 28px;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .lab-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -16px rgba(26, 24, 21, 0.12);
+    border-color: var(--terracotta);
+  }
+  .lab-meta {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .lab-title {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.25;
+    margin-bottom: 14px;
+    font-variation-settings: "SOFT" 50, "opsz" 36;
+  }
+  .lab-desc {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin-bottom: 18px;
+    flex: 1;
+  }
+  .lab-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  .lab-links {
+    display: flex;
+    gap: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(26, 24, 21, 0.08);
+  }
+  .lab-link {
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .lab-link.github {
+    color: var(--ink);
+  }
+  .lab-link.medium {
+    color: var(--terracotta);
+  }
+  .lab-link:hover { transform: translateX(2px); }
+  .lab-link svg { width: 14px; height: 14px; }
+  .lab-link.coming-soon {
+    color: var(--ink-soft);
+    opacity: 0.6;
+    cursor: default;
+    font-style: italic;
+    font-weight: 500;
+  }
+  .lab-link.coming-soon:hover { transform: none; }
+
+  /* BLOG DROPDOWN SECTIONS */
+  .blog-section {
+    margin-bottom: 20px;
+    background: var(--paper);
+    border-radius: 8px;
+    border: 1px solid rgba(26, 24, 21, 0.08);
+    overflow: hidden;
+  }
+  .blog-section[open] { border-color: rgba(181, 82, 58, 0.25); }
+  .blog-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 28px;
+    cursor: pointer;
+    list-style: none;
+    transition: background 0.2s;
+    user-select: none;
+    gap: 16px;
+  }
+  .blog-section-header::-webkit-details-marker { display: none; }
+  .blog-section-header:hover { background: rgba(181, 82, 58, 0.04); }
+  .blog-section-title {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 1.1;
+    font-variation-settings: "SOFT" 50, "opsz" 36;
+    flex: 1;
+  }
+  .blog-section-meta {
+    font-size: 11px;
+    color: var(--terracotta);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .dropdown-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--cream);
+    color: var(--terracotta);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: transform 0.3s, background 0.2s;
+    flex-shrink: 0;
+  }
+  .blog-section[open] .dropdown-icon { transform: rotate(180deg); }
+  .blog-section-body {
+    padding: 8px 28px 32px;
+  }
+  .blog-section-intro {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin-bottom: 28px;
+    max-width: 620px;
+  }
+
+  /* CREDENTIALS */
+  .creds-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 12px;
+  }
+  .cred-pill {
+    padding: 14px 18px;
+    background: var(--paper);
+    border: 1px solid rgba(26, 24, 21, 0.08);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    transition: all 0.2s;
+  }
+  .cred-pill:hover {
+    border-color: var(--terracotta);
+    transform: translateY(-1px);
+  }
+  .cred-pill .issuer {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    font-weight: 700;
+  }
+  .cred-pill .name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  /* EPIC CERTIFICATIONS — distinctive treatment */
+  .epic-certs-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+  }
+  .epic-cert {
+    padding: 14px 18px 14px 22px;
+    background: var(--cream-deep);
+    border: 1px solid rgba(181, 82, 58, 0.35);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .epic-cert::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--terracotta);
+  }
+  .epic-cert:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px -8px rgba(181, 82, 58, 0.25);
+    border-color: var(--terracotta);
+  }
+  .epic-cert .badge {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--terracotta-deep);
+    font-weight: 700;
+  }
+  .epic-cert .module {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  /* WORK CARDS */
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+  .work-card {
+    background: var(--paper);
+    border-radius: 6px;
+    padding: 36px;
+    position: relative;
+    transition: all 0.4s;
+    border: 1px solid rgba(26, 24, 21, 0.06);
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .work-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 48px -16px rgba(26, 24, 21, 0.15);
+    border-color: rgba(181, 82, 58, 0.3);
+  }
+  .work-card.featured {
+    grid-column: span 2;
+    background: var(--ink);
+    color: var(--cream);
+  }
+  .work-card.featured .work-meta { color: rgba(246, 240, 228, 0.6); }
+  .work-card.featured .work-desc { color: rgba(246, 240, 228, 0.8); }
+  .work-card.featured .work-tag {
+    background: rgba(246, 240, 228, 0.1);
+    color: var(--cream);
+    border-color: rgba(246, 240, 228, 0.2);
+  }
+  .work-card.featured::before {
+    content: "FLAGSHIP";
+    position: absolute;
+    top: 28px;
+    right: 28px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+  }
+  .work-card.spotlight {
+    grid-column: span 2;
+    background: var(--cream-deep);
+    border: 1px solid rgba(181, 82, 58, 0.2);
+  }
+  .work-card.spotlight::before {
+    content: "DATA SCIENCE";
+    position: absolute;
+    top: 28px;
+    right: 28px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--terracotta);
+  }
+  .work-card.spotlight .work-title { font-size: 30px; }
+  .work-card.spotlight .result-num { color: var(--terracotta-deep); }
+  .work-meta {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 18px;
+  }
+  .work-title {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 1.18;
+    letter-spacing: -0.015em;
+    margin-bottom: 16px;
+    font-variation-settings: "SOFT" 50, "opsz" 48;
+  }
+  .work-card.featured .work-title { font-size: 34px; }
+  .work-desc {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+  }
+  .work-result {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+    padding: 20px 0;
+    border-top: 1px solid rgba(26, 24, 21, 0.1);
+    border-bottom: 1px solid rgba(26, 24, 21, 0.1);
+  }
+  .work-card.featured .work-result {
+    border-color: rgba(246, 240, 228, 0.15);
+  }
+  .result-item {
+    flex: 1;
+    min-width: 120px;
+  }
+  .result-num {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    color: var(--terracotta);
+    font-style: italic;
+    line-height: 1;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .work-card.featured .result-num { color: var(--gold); }
+  .result-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+  .work-card.featured .result-label { color: rgba(246, 240, 228, 0.7); }
+  .work-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .work-tag {
+    font-size: 11px;
+    padding: 6px 12px;
+    border-radius: 100px;
+    background: var(--cream);
+    color: var(--ink-soft);
+    border: 1px solid rgba(26, 24, 21, 0.08);
+    font-weight: 500;
+  }
+
+  /* BLOG */
+  .writing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .post-card {
+    background: var(--paper);
+    padding: 32px 28px;
+    border-radius: 6px;
+    border: 1px solid rgba(26, 24, 21, 0.06);
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    min-height: 260px;
+  }
+  .post-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -16px rgba(26, 24, 21, 0.12);
+    border-color: var(--terracotta);
+  }
+  .post-meta {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 16px;
+  }
+  .post-title {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: 14px;
+    flex: 1;
+    font-variation-settings: "SOFT" 50, "opsz" 36;
+  }
+  .post-excerpt {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin-bottom: 20px;
+  }
+  .post-read {
+    font-size: 13px;
+    color: var(--terracotta);
+    font-weight: 600;
+    transition: transform 0.3s;
+  }
+  .post-card:hover .post-read { transform: translateX(4px); }
+  .writing-cta {
+    margin-top: 48px;
+    display: flex;
+    justify-content: center;
+  }
+  .writing-cta a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    background: var(--ink);
+    color: var(--cream);
+    text-decoration: none;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s;
+  }
+  .writing-cta a:hover {
+    background: var(--terracotta);
+    transform: translateY(-2px);
+  }
+
+  /* CONTACT */
+  .contact-panel {
+    text-align: left;
+    max-width: 720px;
+  }
+  .contact-intro {
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-width: 580px;
+    margin-bottom: 40px;
+  }
+  .contact-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 28px;
+    background: var(--ink);
+    color: var(--cream);
+    text-decoration: none;
+    border-radius: 100px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.3s;
+    border: 1px solid var(--ink);
+  }
+  .contact-btn:hover {
+    background: var(--terracotta);
+    border-color: var(--terracotta);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px -8px rgba(181, 82, 58, 0.35);
+  }
+  .contact-btn svg { width: 18px; height: 18px; }
+  .contact-btn.outlined {
+    background: transparent;
+    color: var(--ink);
+    border-color: rgba(26, 24, 21, 0.25);
+  }
+  .contact-btn.outlined:hover {
+    background: var(--ink);
+    color: var(--cream);
+    border-color: var(--ink);
+  }
+  .contact-btn.gold {
+    background: var(--gold);
+    color: var(--ink);
+    border-color: var(--gold);
+  }
+  .contact-btn.gold:hover {
+    background: var(--terracotta);
+    color: var(--cream);
+    border-color: var(--terracotta);
+    box-shadow: 0 12px 24px -8px rgba(181, 82, 58, 0.35);
+  }
+
+  footer {
+    padding: 32px 0;
+    border-top: 1px solid rgba(26, 24, 21, 0.08);
+    color: var(--ink-soft);
+    font-size: 13px;
+    text-align: center;
+    background: var(--paper);
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .container { padding: 0 20px; }
+    nav { padding: 14px 0; }
+    .nav-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .tab-nav {
+      width: 100%;
+      justify-content: flex-start;
+      gap: 6px;
+    }
+    .tab-btn {
+      padding: 8px 12px;
+      font-size: 11px;
+      flex: 0 0 auto;
+    }
+    .tab-panel { padding: 32px 0 60px; }
+    .about-hero {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .about-image-wrap { order: -1; max-width: 320px; margin: 0 auto; }
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+      padding: 28px 0;
+    }
+    .work-grid { grid-template-columns: 1fr; gap: 20px; }
+    .work-card { padding: 28px; }
+    .work-card.featured,
+    .work-card.spotlight { grid-column: span 1; }
+    .work-card.featured .work-title { font-size: 26px; }
+    .work-card.spotlight .work-title { font-size: 24px; }
+    .exp-item {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+    .writing-grid { grid-template-columns: 1fr; gap: 16px; }
+    .post-card { min-height: auto; }
+    .lab-grid { grid-template-columns: 1fr; gap: 20px; }
+    .blog-section-header { padding: 18px 20px; }
+    .blog-section-title { font-size: 22px; }
+    .blog-section-body { padding: 4px 20px 24px; }
+    .contact-buttons { flex-direction: column; width: 100%; }
+    .contact-btn { width: 100%; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+<!-- Hidden radio inputs that drive pure-CSS tab switching. About is checked by default. -->
+<input type="radio" name="tabs" id="tab-about" class="tab-radio" checked>
+<input type="radio" name="tabs" id="tab-experience" class="tab-radio">
+<input type="radio" name="tabs" id="tab-work" class="tab-radio">
+<input type="radio" name="tabs" id="tab-blog" class="tab-radio">
+<input type="radio" name="tabs" id="tab-contact" class="tab-radio">
+
+<div class="grain"></div>
+
+<nav>
+  <div class="container nav-inner">
+    <div class="logo-block">
+      <div class="logo">Teija Kohir<span class="dot">.</span></div>
+      <div class="logo-sub">Healthcare AI · Product · Value</div>
+    </div>
+    <div class="tab-nav" role="tablist">
+      <label for="tab-about" class="tab-btn">About</label>
+      <label for="tab-experience" class="tab-btn">Experience</label>
+      <label for="tab-work" class="tab-btn">Case Studies</label>
+      <label for="tab-blog" class="tab-btn">Personal Blog</label>
+      <label for="tab-contact" class="tab-btn">Contact</label>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- ============ ABOUT TAB ============ -->
+<section id="about" class="tab-panel">
+  <div class="container">
+
+    <div class="about-hero">
+      <div>
+        <div class="eyebrow">A point of view</div>
+        <h1>Healthcare AI starts with the <span class="accent">clinician</span> &mdash; not the model.</h1>
+        <p class="hero-sub">
+          I'm Teija Hebshibah Kohir &mdash; call me Tia. Not every AI tool needs to ship to production. The ones that do should make the human-in-the-loop stronger, not redundant.
+        </p>
+      </div>
+      <div class="about-image-wrap">
+        <div class="deco-circle"></div>
+        <img src="tia-hero.jpeg" alt="Teija Hebshibah Kohir" class="about-image" />
+      </div>
+    </div>
+
+    <div class="about-body">
+      <p>
+        Every framework I build starts from the <strong>clinician's seat</strong>. They're who we serve. Healthcare AI only creates value when it <strong>reduces friction</strong> &mdash; not adds to it.
+      </p>
+      <p>
+        That means <strong>automating the administrative burden</strong> &mdash; the repetitive workflows that drain hours from care. And using AI to augment clinical work through <strong>accurate summaries, decision support, and second opinions</strong>. The goal isn't replacing clinical judgment. It's <strong>giving time back to care</strong>.
+      </p>
+      <p>
+        Just as important: <strong>unnecessary duplication of AI solutions should be challenged before it reaches production</strong>. These tools have to be designed inside the existing <strong>EHR and workflow ecosystem</strong> &mdash; not layered on as disconnected point solutions.
+      </p>
+      <p>
+        The AI landscape updates faster than clinicians can absorb it. Nurses and physicians are already running on the edge of <strong>burnout</strong>. A wrong AI product, shipped at the wrong moment, doesn't just fail to help &mdash; it adds to the cognitive load and pushes good people out of the profession. The <strong>human-in-the-loop</strong> isn't a constraint. It's the point.
+      </p>
+      <p>
+        Nine years across the healthcare tech ecosystem &mdash; data engineering, analytics, modeling, and the end-to-end lifecycle from inception through post-production monitoring. Epic implementations at CommonSpirit, BI and data engineering at NYU Langone and Sutter Health, and most recently AI value strategy at <span class="brand-name">Stanford Health Care</span>. MS in Health Data Analytics, MBA in Healthcare Management, B.Tech in Computer Science, CSPO.
+      </p>
+      <div class="signature">&mdash; Tia</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE TAB ============ -->
+<section id="experience" class="tab-panel">
+  <div class="container">
+
+    <div class="eyebrow">Experience</div>
+    <h2>From Epic go-lives to <span class="italic">AI value frameworks.</span></h2>
+
+    <div class="stats-grid">
+      <div class="stat">
+        <span class="stat-num">9<span class="unit">+</span></span>
+        <span class="stat-label">Years across the healthcare tech ecosystem</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">4</span>
+        <span class="stat-label">AI solutions evaluated for ROI &amp; deployment</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">8h <span class="unit">&rarr;</span> 2m</span>
+        <span class="stat-label">Financial validation workflow automation</span>
+      </div>
+    </div>
+
+    <div class="experience-list">
+      <div class="exp-item">
+        <div class="exp-date">2025 &mdash; 2026</div>
+        <div>
+          <div class="exp-role">Healthcare AI Product &amp; Value Strategy</div>
+          <div class="exp-org"><span class="brand-name">Stanford Health Care</span> &middot; AI Value, Finance &amp; Business Ops</div>
+          <div class="exp-detail">
+            Built four-pillar AI value assessment framework applied across deployed healthcare AI solutions. Designed cost allocation model for the ChatEHR platform, separating platform vs. automation costs to feed Scale / Maintain / Retire roadmap decisions.
+          </div>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-date">2021 &mdash; 2023</div>
+        <div>
+          <div class="exp-role">Senior BI &amp; Clinical Product Analyst</div>
+          <div class="exp-org"><span class="brand-name">NYU Langone Health</span> (via Clairvoyant)</div>
+          <div class="exp-detail">
+            Directed end-to-end lifecycle of clinical analytics products including oncology Tableau dashboards. Architected Hadoop data marts, ETL pipelines, and ERDs unifying ADT, pathology, imaging, and surgical workflows for precision medicine and research.
+          </div>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-date">2019 &mdash; 2021</div>
+        <div>
+          <div class="exp-role">Business Intelligence Developer</div>
+          <div class="exp-org"><span class="brand-name">Sutter Health</span> (via Deloitte Consulting)</div>
+          <div class="exp-detail">
+            Generated SQL workflows powering hospital KPIs &mdash; barcode compliance, mental health metrics, oncology dashboards. Optimized reporting accuracy and reduced decision-making time for clinical stakeholders.
+          </div>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-date">2014 &mdash; 2019</div>
+        <div>
+          <div class="exp-role">Consultant (Associate Lead)</div>
+          <div class="exp-org"><span class="brand-name">CommonSpirit Health</span> (via Deloitte Consulting)</div>
+          <div class="exp-detail">
+            Led Epic system upgrades and go-lives across multiple U.S. sites. Mentored teams on Epic ASAP, ClinDoc, Orders, and Reporting Workbench. <span class="award">Recognized with Spot and Optimistic Awards for technical leadership.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tools-header">Tools I work with</div>
+
+    <div class="tool-category">
+      <div class="tool-category-label">AI &amp; LLMs</div>
+      <div class="tools-list">
+        <span class="tool-pill primary">Claude</span>
+        <span class="tool-pill">Gemini</span>
+        <span class="tool-pill">OpenAI</span>
+      </div>
+    </div>
+
+    <div class="tool-category">
+      <div class="tool-category-label">Cloud &amp; Data Platforms</div>
+      <div class="tools-list">
+        <span class="tool-pill">GCP</span>
+        <span class="tool-pill">Azure</span>
+        <span class="tool-pill">BigQuery</span>
+        <span class="tool-pill">Databricks</span>
+        <span class="tool-pill">Databricks Genie</span>
+        <span class="tool-pill">Hadoop</span>
+      </div>
+    </div>
+
+    <div class="tool-category">
+      <div class="tool-category-label">Languages</div>
+      <div class="tools-list">
+        <span class="tool-pill">Python</span>
+        <span class="tool-pill">SQL / PL-SQL</span>
+      </div>
+    </div>
+
+    <div class="tool-category">
+      <div class="tool-category-label">Coding &amp; Productivity</div>
+      <div class="tools-list">
+        <span class="tool-pill">VSCode</span>
+        <span class="tool-pill">Tableau</span>
+        <span class="tool-pill">Jira / Agile</span>
+        <span class="tool-pill">Collibra</span>
+      </div>
+    </div>
+
+    <div class="tools-header">Epic Certifications</div>
+    <div class="epic-certs-list">
+      <div class="epic-cert">
+        <span class="badge">Epic</span>
+        <span class="module">ASAP</span>
+      </div>
+      <div class="epic-cert">
+        <span class="badge">Epic</span>
+        <span class="module">SmartForms</span>
+      </div>
+      <div class="epic-cert">
+        <span class="badge">Epic</span>
+        <span class="module">Cogito</span>
+      </div>
+      <div class="epic-cert">
+        <span class="badge">Epic Data Model</span>
+        <span class="module">Clarity</span>
+      </div>
+      <div class="epic-cert">
+        <span class="badge">Epic Data Model</span>
+        <span class="module">Clinical</span>
+      </div>
+      <div class="epic-cert">
+        <span class="badge">Epic Data Model</span>
+        <span class="module">Caboodle</span>
+      </div>
+    </div>
+
+    <div class="tools-header">Credentials &amp; Memberships</div>
+    <div class="creds-list">
+      <div class="cred-pill">
+        <span class="issuer">Stanford Online</span>
+        <span class="name">Digital Health Product Development</span>
+      </div>
+      <div class="cred-pill">
+        <span class="issuer">Google</span>
+        <span class="name">Project Management Foundations</span>
+      </div>
+      <div class="cred-pill">
+        <span class="issuer">Scrum Alliance</span>
+        <span class="name">Certified Scrum Product Owner (CSPO)</span>
+      </div>
+      <div class="cred-pill">
+        <span class="issuer">Member</span>
+        <span class="name">American College of Healthcare Executives (ACHE)</span>
+      </div>
+      <div class="cred-pill">
+        <span class="issuer">Member</span>
+        <span class="name">American Medical Informatics Association (AMIA)</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ CASE STUDIES TAB ============ -->
+<section id="work" class="tab-panel">
+  <div class="container">
+
+    <div class="eyebrow">Selected Work</div>
+    <h2>Case studies in <span class="italic">healthcare AI</span> &amp; analytics.</h2>
+    <p class="section-intro">
+      Projects across the value-realization lifecycle for healthcare AI &mdash; from clinical operations and data engineering to financial modeling, predictive analytics, and the evaluation work that informs what should actually ship.
+    </p>
+
+    <div class="work-grid">
+
+      <article class="work-card featured">
+        <div class="work-meta">Stanford Health Care</div>
+        <h3 class="work-title">A standardized AI value assessment framework for health systems.</h3>
+        <p class="work-desc">
+          Designed and operationalized a four-pillar economic model to evaluate healthcare AI initiatives. Embedded ROI, NPV, and payback period analysis into the Responsible AI lifecycle &mdash; from intake to post-deployment monitoring. Stress-tested assumptions and cost drivers cross-functionally with finance, data science, and informatics to keep models defensible at executive review.
+        </p>
+        <div class="work-result">
+          <div class="result-item">
+            <span class="result-num">4</span>
+            <span class="result-label">Solutions evaluated</span>
+          </div>
+          <div class="result-item">
+            <span class="result-num">4-pillar</span>
+            <span class="result-label">Value framework</span>
+          </div>
+          <div class="result-item">
+            <span class="result-num">2&times;2</span>
+            <span class="result-label">Strategic prioritization matrix</span>
+          </div>
+        </div>
+        <div class="work-tags">
+          <span class="work-tag">AI Governance</span>
+          <span class="work-tag">ROI / NPV</span>
+          <span class="work-tag">Product Strategy</span>
+          <span class="work-tag">Cross-functional Leadership</span>
+        </div>
+      </article>
+
+      <article class="work-card spotlight">
+        <div class="work-meta">Advance Care Planning &middot; Predictive Modeling</div>
+        <h3 class="work-title">Identifying patients who'd benefit from earlier ACP conversations.</h3>
+        <p class="work-desc">
+          Engineered an end-to-end pipeline in Databricks to surface patients likely to benefit from advance care planning conversations &mdash; owning cohort definition, feature engineering, model training, and evaluation. Trained and compared six models &mdash; <strong>XGBoost, Regression, Random Forest</strong>, plus three additional baselines surfaced by Databricks Genie &mdash; benchmarked across five clinical performance metrics. Layered a unit-cost analysis (with assumption-based inputs) and token-level monitoring to test production sustainability under realistic inference spend.
+        </p>
+        <div class="work-result">
+          <div class="result-item">
+            <span class="result-num">6</span>
+            <span class="result-label">Models compared</span>
+          </div>
+          <div class="result-item">
+            <span class="result-num">AUC + F1</span>
+            <span class="result-label">Key benchmark metrics</span>
+          </div>
+          <div class="result-item">
+            <span class="result-num">Cost-aware</span>
+            <span class="result-label">Unit &amp; token spend analysis</span>
+          </div>
+        </div>
+        <div class="work-tags">
+          <span class="work-tag">Databricks</span>
+          <span class="work-tag">Databricks Genie</span>
+          <span class="work-tag">XGBoost</span>
+          <span class="work-tag">Python</span>
+          <span class="work-tag">SQL</span>
+          <span class="work-tag">Clinical Decision Support</span>
+        </div>
+      </article>
+
+      <article class="work-card">
+        <div class="work-meta"><span class="brand-name">Stanford</span> &middot; ChatEHR</div>
+        <h3 class="work-title">Cost allocation model for an enterprise AI platform.</h3>
+        <p class="work-desc">
+          Built a structured cost-separation model for ChatEHR automations &mdash; isolating platform vs. automation costs and feeding a Scale / Maintain / Retire classification used in roadmap decisions.
+        </p>
+        <div class="work-tags">
+          <span class="work-tag">Cost Modeling</span>
+          <span class="work-tag">Portfolio Strategy</span>
+          <span class="work-tag">Finance × AI</span>
+        </div>
+      </article>
+
+      <article class="work-card">
+        <div class="work-meta"><span class="brand-name">NYU Langone Health</span></div>
+        <h3 class="work-title">Oncology analytics &amp; clinical data products.</h3>
+        <p class="work-desc">
+          Led the end-to-end lifecycle of Tableau-based oncology dashboards. Architected Hadoop data marts, ETL pipelines, and ERDs that unified ADT, pathology, imaging, and surgical workflows for precision medicine.
+        </p>
+        <div class="work-tags">
+          <span class="work-tag">Tableau</span>
+          <span class="work-tag">Hadoop / SQL</span>
+          <span class="work-tag">Oncology</span>
+        </div>
+      </article>
+
+      <article class="work-card">
+        <div class="work-meta">Academic Project</div>
+        <h3 class="work-title">Breast cancer classification with ML.</h3>
+        <p class="work-desc">
+          Built and benchmarked Random Forest and SVM classifiers on diagnostic imaging data, achieving ~96% accuracy. Companion projects: BRFSS healthy-aging dashboard and a BigQuery analytics pipeline.
+        </p>
+        <div class="work-tags">
+          <span class="work-tag">Python</span>
+          <span class="work-tag">ML</span>
+          <span class="work-tag">GCP / BigQuery</span>
+        </div>
+      </article>
+
+      <article class="work-card">
+        <div class="work-meta"><span class="brand-name">CommonSpirit Health</span></div>
+        <h3 class="work-title">Epic implementations across U.S. health systems.</h3>
+        <p class="work-desc">
+          Led Epic upgrades and go-lives across multiple U.S. sites &mdash; coaching teams on ASAP, ClinDoc, Orders, and Reporting Workbench. The clinical-workflow grounding that anchors my AI work today.
+        </p>
+        <div class="work-tags">
+          <span class="work-tag">Epic</span>
+          <span class="work-tag">Change Management</span>
+          <span class="work-tag">Clinical Workflow</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ PERSONAL BLOG TAB (with AI Lab + Medium dropdowns) ============ -->
+<section id="blog" class="tab-panel">
+  <div class="container">
+
+    <div class="eyebrow">Personal Blog &amp; Lab</div>
+    <h2>Notes, <span class="italic">findings,</span> and what I'm learning.</h2>
+    <p class="section-intro">
+      Two streams: homegrown research projects from my personal AI lab, and longer-form essays published on Medium. Click a section header to expand or collapse.
+    </p>
+
+    <!-- ===== AI LAB DROPDOWN ===== -->
+    <details open class="blog-section">
+      <summary class="blog-section-header">
+        <div class="blog-section-title">AI Lab</div>
+        <div class="blog-section-meta">3 ongoing projects</div>
+        <div class="dropdown-icon">&#9662;</div>
+      </summary>
+      <div class="blog-section-body">
+        <p class="blog-section-intro">
+          Homegrown research and side projects exploring the questions I think matter most for healthcare AI deployment, adoption, and impact measurement &mdash; outside the boundary of any single employer.
+        </p>
+
+        <!--
+          TO ADD A NEW LAB PROJECT:
+          Copy one <article class="lab-card">…</article> block below and paste
+          into the .lab-grid. Update GitHub and Medium URLs as you publish.
+        -->
+        <div class="lab-grid">
+
+          <article class="lab-card">
+            <div class="lab-meta">In Progress &middot; Research + Build</div>
+            <h3 class="lab-title">Clinical Summary.</h3>
+            <p class="lab-desc">
+              Exploring approaches to clinical note and encounter summarization &mdash; what accuracy, clinical relevance, and &ldquo;good enough for clinician trust&rdquo; actually mean in practice.
+            </p>
+            <div class="lab-tags">
+              <span class="work-tag">NLP</span>
+              <span class="work-tag">LLMs</span>
+              <span class="work-tag">Clinical Workflows</span>
+            </div>
+            <div class="lab-links">
+              <span class="lab-link github coming-soon">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                Repo coming soon
+              </span>
+            </div>
+          </article>
+
+          <article class="lab-card">
+            <div class="lab-meta">Research &middot; Deployment Analytics</div>
+            <h3 class="lab-title">Work Telemetry &mdash; Pre &amp; Post Deployment.</h3>
+            <p class="lab-desc">
+              Studying clinician work telemetry before and after AI deployments to quantify what AI actually changes in day-to-day workflow &mdash; and what it doesn't. Looking for measurable signal beyond satisfaction surveys.
+            </p>
+            <div class="lab-tags">
+              <span class="work-tag">Telemetry</span>
+              <span class="work-tag">Deployment Analytics</span>
+              <span class="work-tag">Behavioral Impact</span>
+            </div>
+            <div class="lab-links">
+              <span class="lab-link github coming-soon">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                Repo coming soon
+              </span>
+            </div>
+          </article>
+
+          <article class="lab-card">
+            <div class="lab-meta">Research &middot; Adoption + Burnout</div>
+            <h3 class="lab-title">Clinician Alert Fatigue &amp; Adoption.</h3>
+            <p class="lab-desc">
+              Researching how alert fatigue patterns interact with clinician adoption of AI tools &mdash; and what deployment strategy can do to reduce one without sacrificing the other.
+            </p>
+            <div class="lab-tags">
+              <span class="work-tag">Adoption</span>
+              <span class="work-tag">Alert Fatigue</span>
+              <span class="work-tag">Human Factors</span>
+            </div>
+            <div class="lab-links">
+              <span class="lab-link github coming-soon">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                Repo coming soon
+              </span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </details>
+
+    <!-- ===== MEDIUM ARTICLES DROPDOWN ===== -->
+    <details open class="blog-section">
+      <summary class="blog-section-header">
+        <div class="blog-section-title">Medium Articles</div>
+        <div class="blog-section-meta">5 essays</div>
+        <div class="dropdown-icon">&#9662;</div>
+      </summary>
+      <div class="blog-section-body">
+        <p class="blog-section-intro">
+          Field notes and longer essays on healthcare AI, deployment discipline, accountability, and the human-in-the-loop.
+        </p>
+
+        <!--
+          ============================================================
+          TO ADD A NEW MEDIUM ARTICLE:
+          Copy one of the <a class="post-card">...</a> blocks below,
+          paste it inside the .writing-grid div (most recent first),
+          then swap the href, category, read time, title, and excerpt.
+          ============================================================
+        -->
+        <div class="writing-grid">
+
+          <!-- START BLOG POSTS — add new cards here, most recent first -->
+
+          <a href="https://medium.com/data-and-beyond/ais-beautiful-error-is-making-us-intellectually-curious-fbada46ac870" target="_blank" rel="noopener" class="post-card">
+            <div class="post-meta">Essay &middot; Oct 2025 &middot; Pinned</div>
+            <div class="post-title">AI's Beautiful Error Is Making Us Intellectually Curious.</div>
+            <p class="post-excerpt">
+              We often talk about AI hallucination as a flaw &mdash; as if it's a glitch, a moment when the machine loses its grip on truth.
+            </p>
+            <span class="post-read">Read on Medium &rarr;</span>
+          </a>
+
+          <a href="https://medium.com/@TiaKohir/health-intelligence-the-next-era-of-decision-making-in-healthcare-c6e0b4dfea78" target="_blank" rel="noopener" class="post-card">
+            <div class="post-meta">Essay &middot; Oct 2025 &middot; Pinned</div>
+            <div class="post-title">Health Intelligence: The Next Era of Decision-Making in Healthcare.</div>
+            <p class="post-excerpt">
+              Why the future of medicine isn't just artificial &mdash; it's intelligent.
+            </p>
+            <span class="post-read">Read on Medium &rarr;</span>
+          </a>
+
+          <a href="https://medium.com/data-and-beyond/from-ai-adoption-to-ai-portfolio-discipline-f4e99e412ad1" target="_blank" rel="noopener" class="post-card">
+            <div class="post-meta">Framework &middot; Feb 2026</div>
+            <div class="post-title">From AI Adoption to AI Portfolio Discipline.</div>
+            <p class="post-excerpt">
+              Every organization I speak to is &ldquo;doing AI.&rdquo; Few are managing it as a portfolio.
+            </p>
+            <span class="post-read">Read on Medium &rarr;</span>
+          </a>
+
+          <a href="https://medium.com/@TiaKohir/ai-misdiagnosis-and-responsibility-what-we-know-what-exists-and-what-still-needs-clarity-46599a9ebd8f" target="_blank" rel="noopener" class="post-card">
+            <div class="post-meta">Analysis &middot; Dec 2025</div>
+            <div class="post-title">AI, Misdiagnosis, and Responsibility.</div>
+            <p class="post-excerpt">
+              What we know, what exists, and what still needs clarity in healthcare AI accountability.
+            </p>
+            <span class="post-read">Read on Medium &rarr;</span>
+          </a>
+
+          <a href="https://medium.com/data-and-beyond/the-shadow-race-when-ai-starts-talking-beyond-us-eecbdaefa131" target="_blank" rel="noopener" class="post-card">
+            <div class="post-meta">Essay &middot; Nov 2025</div>
+            <div class="post-title">The Shadow Race: When AI Starts Talking Beyond Us.</div>
+            <p class="post-excerpt">
+              &ldquo;The danger isn't that AI will destroy us. It's that, little by little, it will convince us to stop being us.&rdquo;
+            </p>
+            <span class="post-read">Read on Medium &rarr;</span>
+          </a>
+
+          <!-- END BLOG POSTS -->
+
+        </div>
+
+        <div class="writing-cta">
+          <a href="https://medium.com/@TiaKohir" target="_blank" rel="noopener">
+            Follow me on Medium &rarr;
+          </a>
+        </div>
+      </div>
+    </details>
+
+  </div>
+</section>
+
+<!-- ============ CONTACT TAB ============ -->
+<section id="contact" class="tab-panel">
+  <div class="container contact-panel">
+
+    <div class="eyebrow">Contact</div>
+    <h2>Let's talk about <span class="italic">AI in health systems.</span></h2>
+    <p class="contact-intro">
+      Open to senior product, value strategy, and applied AI roles at health systems and health-tech companies. If we share a problem worth solving, send a note.
+    </p>
+
+    <div class="contact-buttons">
+      <a href="mailto:teijahebshibah@gmail.com" class="contact-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Email Me
+      </a>
+      <a href="mailto:teijahebshibah@gmail.com?subject=Speaking%20Invitation&amp;body=Hi%20Tia%2C%0A%0AI%27d%20like%20to%20invite%20you%20to%20speak.%20Here%20are%20some%20details%3A%0A%0AOrganization%20%2F%20Company%3A%0A%0AEvent%20name%20%2F%20type%3A%0A%0AAudience%20%26%20size%3A%0A%0ADate%20or%20timeline%3A%0A%0ATopic%20you%27d%20like%20covered%3A%0A%0AFormat%20%28keynote%20%2F%20panel%20%2F%20fireside%20%2F%20workshop%29%3A%0A%0ALocation%20%28in-person%20%2F%20virtual%29%3A%0A%0AAdditional%20context%3A%0A%0AThanks%21" class="contact-btn gold">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+        Invite Me to Speak
+      </a>
+      <a href="tel:+14695868884" class="contact-btn outlined">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Call
+      </a>
+      <a href="https://www.linkedin.com" class="contact-btn outlined" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/TiaKohir" class="contact-btn outlined" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">Teija Hebshibah Kohir &copy; 2026 &middot; Designed with care.</div>
+</footer>
+
+</body>
+</html>
