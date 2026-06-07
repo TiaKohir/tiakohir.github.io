@@ -134,6 +134,7 @@
   #tab-experience:checked ~ main #experience,
   #tab-work:checked     ~ main #work,
   #tab-blog:checked     ~ main #blog,
+  #tab-research:checked ~ main #research,
   #tab-contact:checked  ~ main #contact {
     display: block;
   }
@@ -142,6 +143,7 @@
   #tab-experience:checked ~ nav label[for="tab-experience"],
   #tab-work:checked     ~ nav label[for="tab-work"],
   #tab-blog:checked     ~ nav label[for="tab-blog"],
+  #tab-research:checked ~ nav label[for="tab-research"],
   #tab-contact:checked  ~ nav label[for="tab-contact"] {
     background: var(--ink);
     color: var(--cream);
@@ -975,6 +977,7 @@
 <input type="radio" name="tabs" id="tab-experience" class="tab-radio">
 <input type="radio" name="tabs" id="tab-work" class="tab-radio">
 <input type="radio" name="tabs" id="tab-blog" class="tab-radio">
+<input type="radio" name="tabs" id="tab-research" class="tab-radio">
 <input type="radio" name="tabs" id="tab-contact" class="tab-radio">
 
 <div class="grain"></div>
@@ -990,6 +993,7 @@
       <label for="tab-experience" class="tab-btn">Experience</label>
       <label for="tab-work" class="tab-btn">Case Studies</label>
       <label for="tab-blog" class="tab-btn">Personal Blog</label>
+      <label for="tab-research" class="tab-btn">Research</label>
       <label for="tab-contact" class="tab-btn">Contact</label>
     </div>
   </div>
@@ -1029,7 +1033,7 @@
         The AI landscape updates faster than clinicians can absorb it. Nurses and physicians are already running on the edge of <strong>burnout</strong>. A wrong AI product, shipped at the wrong moment, doesn't just fail to help &mdash; it adds to the cognitive load and pushes good people out of the profession. The <strong>human-in-the-loop</strong> isn't a constraint. It's the point.
       </p>
       <p>
-        Nine years across the healthcare tech ecosystem &mdash; data engineering, analytics, modeling, and the end-to-end lifecycle from inception through post-production monitoring. Epic implementations at CommonSpirit, BI and data engineering at NYU Langone and Sutter Health, and most recently AI value strategy at <span class="brand-name">Stanford Health Care</span>. MS in Health Data Analytics, MBA in Healthcare Management, B.Tech in Computer Science, CSPO.
+        Nine years across the healthcare tech ecosystem &mdash; data engineering, analytics, modeling, and the end-to-end lifecycle from inception through post-production monitoring. Epic implementations at CommonSpirit, BI and data engineering at NYU Langone and Sutter Health, and most recently AI value strategy at <span class="brand-name">Stanford Health Care</span>. Bachelor's in Computer Science, MBA in Hospital and Healthcare Administration, MS in Health Data Analytics.
       </p>
       <div class="signature">&mdash; Tia</div>
     </div>
@@ -1415,79 +1419,43 @@
     </details>
 
     <!-- ===== MEDIUM ARTICLES DROPDOWN ===== -->
-    <details open class="blog-section">
+    <details class="blog-section">
       <summary class="blog-section-header">
         <div class="blog-section-title">Medium Articles</div>
-        <div class="blog-section-meta">5 essays</div>
+        <div class="blog-section-meta">6 essays</div>
         <div class="dropdown-icon">&#9662;</div>
       </summary>
       <div class="blog-section-body">
         <p class="blog-section-intro">
           Field notes and longer essays on healthcare AI, deployment discipline, accountability, and the human-in-the-loop.
         </p>
-
-        <!--
-          ============================================================
-          TO ADD A NEW MEDIUM ARTICLE:
-          Copy one of the <a class="post-card">...</a> blocks below,
-          paste it inside the .writing-grid div (most recent first),
-          then swap the href, category, read time, title, and excerpt.
-          ============================================================
-        -->
-        <div class="writing-grid">
-
-          <!-- START BLOG POSTS — add new cards here, most recent first -->
-
-          <a href="https://medium.com/data-and-beyond/ais-beautiful-error-is-making-us-intellectually-curious-fbada46ac870" target="_blank" rel="noopener" class="post-card">
-            <div class="post-meta">Essay &middot; Oct 2025 &middot; Pinned</div>
-            <div class="post-title">AI's Beautiful Error Is Making Us Intellectually Curious.</div>
-            <p class="post-excerpt">
-              We often talk about AI hallucination as a flaw &mdash; as if it's a glitch, a moment when the machine loses its grip on truth.
-            </p>
-            <span class="post-read">Read on Medium &rarr;</span>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <a href="https://medium.com/data-and-beyond/context-accuracy-the-new-non-negotiable-standard-for-clinical-ai-311dfb88e233" target="_blank" rel="noopener" style="padding: 14px 18px; background: var(--paper); border-radius: 6px; border: 1px solid rgba(26, 24, 21, 0.08); text-decoration: none; color: var(--ink); transition: all 0.2s; display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-weight: 500; color: var(--ink);">Context Accuracy: The New Non-Negotiable Standard for Clinical AI</span>
+            <span style="color: var(--terracotta); font-size: 12px; white-space: nowrap; margin-left: 10px;">→</span>
           </a>
-
-          <a href="https://medium.com/@TiaKohir/health-intelligence-the-next-era-of-decision-making-in-healthcare-c6e0b4dfea78" target="_blank" rel="noopener" class="post-card">
-            <div class="post-meta">Essay &middot; Oct 2025 &middot; Pinned</div>
-            <div class="post-title">Health Intelligence: The Next Era of Decision-Making in Healthcare.</div>
-            <p class="post-excerpt">
-              Why the future of medicine isn't just artificial &mdash; it's intelligent.
-            </p>
-            <span class="post-read">Read on Medium &rarr;</span>
+          <a href="https://medium.com/data-and-beyond/ais-beautiful-error-is-making-us-intellectually-curious-fbada46ac870" target="_blank" rel="noopener" style="padding: 14px 18px; background: var(--paper); border-radius: 6px; border: 1px solid rgba(26, 24, 21, 0.08); text-decoration: none; color: var(--ink); transition: all 0.2s; display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-weight: 500; color: var(--ink);">AI's Beautiful Error Is Making Us Intellectually Curious</span>
+            <span style="color: var(--terracotta); font-size: 12px; white-space: nowrap; margin-left: 10px;">→</span>
           </a>
-
-          <a href="https://medium.com/data-and-beyond/from-ai-adoption-to-ai-portfolio-discipline-f4e99e412ad1" target="_blank" rel="noopener" class="post-card">
-            <div class="post-meta">Framework &middot; Feb 2026</div>
-            <div class="post-title">From AI Adoption to AI Portfolio Discipline.</div>
-            <p class="post-excerpt">
-              Every organization I speak to is &ldquo;doing AI.&rdquo; Few are managing it as a portfolio.
-            </p>
-            <span class="post-read">Read on Medium &rarr;</span>
+          <a href="https://medium.com/@TiaKohir/health-intelligence-the-next-era-of-decision-making-in-healthcare-c6e0b4dfea78" target="_blank" rel="noopener" style="padding: 14px 18px; background: var(--paper); border-radius: 6px; border: 1px solid rgba(26, 24, 21, 0.08); text-decoration: none; color: var(--ink); transition: all 0.2s; display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-weight: 500; color: var(--ink);">Health Intelligence: The Next Era of Decision-Making in Healthcare</span>
+            <span style="color: var(--terracotta); font-size: 12px; white-space: nowrap; margin-left: 10px;">→</span>
           </a>
-
-          <a href="https://medium.com/@TiaKohir/ai-misdiagnosis-and-responsibility-what-we-know-what-exists-and-what-still-needs-clarity-46599a9ebd8f" target="_blank" rel="noopener" class="post-card">
-            <div class="post-meta">Analysis &middot; Dec 2025</div>
-            <div class="post-title">AI, Misdiagnosis, and Responsibility.</div>
-            <p class="post-excerpt">
-              What we know, what exists, and what still needs clarity in healthcare AI accountability.
-            </p>
-            <span class="post-read">Read on Medium &rarr;</span>
+          <a href="https://medium.com/data-and-beyond/from-ai-adoption-to-ai-portfolio-discipline-f4e99e412ad1" target="_blank" rel="noopener" style="padding: 14px 18px; background: var(--paper); border-radius: 6px; border: 1px solid rgba(26, 24, 21, 0.08); text-decoration: none; color: var(--ink); transition: all 0.2s; display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-weight: 500; color: var(--ink);">From AI Adoption to AI Portfolio Discipline</span>
+            <span style="color: var(--terracotta); font-size: 12px; white-space: nowrap; margin-left: 10px;">→</span>
           </a>
-
-          <a href="https://medium.com/data-and-beyond/the-shadow-race-when-ai-starts-talking-beyond-us-eecbdaefa131" target="_blank" rel="noopener" class="post-card">
-            <div class="post-meta">Essay &middot; Nov 2025</div>
-            <div class="post-title">The Shadow Race: When AI Starts Talking Beyond Us.</div>
-            <p class="post-excerpt">
-              &ldquo;The danger isn't that AI will destroy us. It's that, little by little, it will convince us to stop being us.&rdquo;
-            </p>
-            <span class="post-read">Read on Medium &rarr;</span>
+          <a href="https://medium.com/@TiaKohir/ai-misdiagnosis-and-responsibility-what-we-know-what-exists-and-what-still-needs-clarity-46599a9ebd8f" target="_blank" rel="noopener" style="padding: 14px 18px; background: var(--paper); border-radius: 6px; border: 1px solid rgba(26, 24, 21, 0.08); text-decoration: none; color: var(--ink); transition: all 0.2s; display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-weight: 500; color: var(--ink);">AI, Misdiagnosis, and Responsibility</span>
+            <span style="color: var(--terracotta); font-size: 12px; white-space: nowrap; margin-left: 10px;">→</span>
           </a>
-
-          <!-- END BLOG POSTS -->
-
+          <a href="https://medium.com/data-and-beyond/the-shadow-race-when-ai-starts-talking-beyond-us-eecbdaefa131" target="_blank" rel="noopener" style="padding: 14px 18px; background: var(--paper); border-radius: 6px; border: 1px solid rgba(26, 24, 21, 0.08); text-decoration: none; color: var(--ink); transition: all 0.2s; display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-weight: 500; color: var(--ink);">The Shadow Race: When AI Starts Talking Beyond Us</span>
+            <span style="color: var(--terracotta); font-size: 12px; white-space: nowrap; margin-left: 10px;">→</span>
+          </a>
         </div>
-
-        <div class="writing-cta">
+        <div class="writing-cta" style="margin-top: 20px;">
           <a href="https://medium.com/@TiaKohir" target="_blank" rel="noopener">
             Follow me on Medium &rarr;
           </a>
@@ -1537,6 +1505,56 @@
         </div>
       </div>
     </details>
+
+  </div>
+</section>
+
+<!-- ============ RESEARCH TAB ============ -->
+<section id="research" class="tab-panel">
+  <div class="container">
+
+    <div class="eyebrow">Research</div>
+    <h2>Active and <span class="italic">exploratory</span> research initiatives.</h2>
+
+    <div style="display: flex; flex-direction: column; gap: 28px;">
+
+      <!-- Research Project 1 -->
+      <div style="padding: 28px; background: var(--paper); border-radius: 8px; border-left: 5px solid var(--terracotta);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+          <h3 style="font-family: 'Fraunces', serif; font-size: 24px; font-weight: 400; margin: 0; color: var(--ink);">Building a Research OS for Healthcare AI Gaps</h3>
+          <span style="background: var(--terracotta); color: var(--cream); font-size: 11px; padding: 6px 12px; border-radius: 100px; white-space: nowrap; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;">Currently Active</span>
+        </div>
+        <p style="color: var(--ink-soft); line-height: 1.7; margin: 0 0 14px 0;">
+          Designing and building a comprehensive research platform to identify and catalog gaps in clinical and healthcare AI deployment across the rapidly evolving landscape. The goal is to surface opportunities where AI can create real clinical value and highlight areas where premature adoption or duplication is happening.
+        </p>
+        <div style="color: var(--ink-soft); font-size: 14px; line-height: 1.6;">
+          <strong style="color: var(--ink);">Scope:</strong> Market analysis, stakeholder interviews, deployment pattern mapping, gap prioritization
+        </div>
+      </div>
+
+      <!-- Research Project 2 -->
+      <div style="padding: 28px; background: var(--paper); border-radius: 8px; border-left: 5px solid var(--gold);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+          <h3 style="font-family: 'Fraunces', serif; font-size: 24px; font-weight: 400; margin: 0; color: var(--ink);">AI and Emotional Intelligence in Clinical Settings</h3>
+          <span style="background: var(--ink-soft); color: var(--cream); font-size: 11px; padding: 6px 12px; border-radius: 100px; white-space: nowrap; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;">Paused</span>
+        </div>
+        <p style="color: var(--ink-soft); line-height: 1.7; margin: 0 0 14px 0;">
+          IRB-approved research exploring the intersection of AI systems and clinician emotional intelligence. Examining how AI interactions affect clinician empathy, burnout, and decision-making quality. Currently pending data collection due to unavailable PI from college; building infrastructure to enable future deployment.
+        </p>
+        <div style="color: var(--ink-soft); font-size: 14px; line-height: 1.6; margin-bottom: 12px;">
+          <strong style="color: var(--ink);">Status:</strong> IRB approved, awaiting PI alignment
+        </div>
+        <div style="color: var(--ink-soft); font-size: 14px; line-height: 1.6;">
+          <strong style="color: var(--ink);">Methodology Ready:</strong>
+          <ul style="margin: 8px 0 0 20px; padding: 0;">
+            <li>Qualtrics survey built (30-question Likert scale)</li>
+            <li>Research protocol and methodology documented</li>
+            <li>Ready for deployment upon PI coordination</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
 
   </div>
 </section>
