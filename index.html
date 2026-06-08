@@ -48,7 +48,7 @@
     mix-blend-mode: multiply;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
-  .container { max-width: 1200px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 2; }
+  .container { width: min(1340px, 94vw); max-width: 100%; margin: 0 auto; padding: 0 28px; position: relative; z-index: 2; }
 
   /* NAV with tabs */
   nav {
@@ -228,7 +228,7 @@
     grid-template-columns: 1.4fr 1fr;
     gap: 60px;
     align-items: center;
-    margin-bottom: 60px;
+    margin-bottom: 36px;
   }
   .about-image-wrap {
     position: relative;
@@ -262,14 +262,17 @@
   }
 
   .about-body {
-    max-width: 720px;
-    margin-top: 20px;
+    max-width: 1100px;
+    margin-top: 8px;
+    columns: 2 360px;       /* two columns on wide screens, auto-collapses to one when narrow */
+    column-gap: 56px;
   }
   .about-body p {
     font-size: 17px;
-    line-height: 1.7;
+    line-height: 1.6;
     color: var(--ink-soft);
-    margin-bottom: 20px;
+    margin-bottom: 16px;
+    break-inside: avoid;
   }
   .about-body p:first-child {
     font-family: 'Fraunces', serif;
@@ -278,6 +281,9 @@
     color: var(--ink);
     line-height: 1.4;
     font-variation-settings: "SOFT" 50;
+    column-span: all;        /* lead line spans the full width above the two columns */
+    max-width: 880px;
+    margin-bottom: 22px;
   }
   .about-body strong {
     font-weight: 600;
@@ -293,12 +299,14 @@
     letter-spacing: -0.005em;
   }
   .signature {
-    margin-top: 32px;
+    margin-top: 20px;
     font-family: 'Fraunces', serif;
     font-style: italic;
     font-size: 28px;
     color: var(--terracotta);
     font-variation-settings: "SOFT" 100;
+    column-span: all;
+    break-inside: avoid;
   }
 
   /* STATS */
